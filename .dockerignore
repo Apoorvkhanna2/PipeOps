@@ -1,0 +1,27 @@
+# node
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# local env / secrets
+.env
+.env.*.local
+
+# docker build files (optional)
+Dockerfile
+.dockerignore
+
+# git & IDE
+.git
+.gitignore
+.vscode
+.idea
+
+# system / build artifacts
+.DS_Store
+Thumbs.db
+dist
+build
+coverage
+*.log

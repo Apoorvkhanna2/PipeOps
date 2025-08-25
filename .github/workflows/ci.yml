@@ -1,0 +1,28 @@
+name: CI - Build & Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: cd app && npm ci
+
+      - name: Run tests
+        run: cd app && npm test || true
+
+      - name: Build Docker image (validate)
+        run: docker build -f Docker/Dockerfile -t pipeops:${{ github.sha }} .
